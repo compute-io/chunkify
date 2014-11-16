@@ -61,9 +61,9 @@ var out = chunkify( data, 3, opts );
 ```
 
 
-##### overlap (0<k<n)
+##### overlap ( 0 < k < n )
 
-By default, the array is segmented into adjacent chunks (no overlap). To specify a chunk overlap `k` where `k < n`,
+By default, the array is segmented into adjacent chunks (no overlap). To specify a chunk overlap `k` where `0 < k < n`,
 
 ``` javascript
 var opts = {
@@ -91,7 +91,7 @@ var out = chunkify( data, 3, opts );
 By default, an `array` is chunked beginning with the first `array` element. You may want to
 
 
-##### underlap (k<0)
+##### underlap ( k < 0 )
 
 Note, by default, `k = 0`. To specify a chunk underlap (`k < 0 `),
 
