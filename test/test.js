@@ -237,7 +237,14 @@ describe( 'compute-chunkify', function tests() {
 		}
 	});
 
-	it( 'should chunk an array' );
+	it( 'should chunk an array', function test() {
+		var data, expected, actual
+
+		data = [ 1, 2, 3, 4, 5, 6, 7, 8 ];
+
+		actual = chunkify( data, 3 );
+		console.log( actual );
+	});
 
 	it( 'should respect a starting index' );
 
