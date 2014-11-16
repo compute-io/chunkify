@@ -44,7 +44,7 @@ The function is configurable and has the following options...
 
 ##### _start_
 
-`Integer` specifying the index from which to begin chunking.
+`Integer` specifying the index from which to begin chunking. Default: `0`.
 
 ``` javascript
 var opts = {
@@ -64,7 +64,7 @@ var out = chunkify( data, 3, opts );
 
 ##### _truncate_
 
-`Boolean` specifying whether the last chunk must contain only `array` values and no padded values.
+`Boolean` specifying whether the last chunk must contain only `array` values and no padded values. Default: `false`.
 
 ``` javascript
 var opts = {
@@ -83,7 +83,9 @@ var out = chunkify( data, 3, opts );
 
 ##### _padding_
 
-By default, if the `array` length is not evenly divisible by `n`, the last chunk is padded with `null` values. To turn off padding, set this option to `false`.
+By default, if the `array` length is not evenly divisible by `n`, the last chunk is padded with `null` values. Default: `true`.
+
+To turn off padding, set this option to `false`.
 
 ``` javascript
 var opts = {
@@ -103,7 +105,7 @@ var out = chunkify( data, 3, opts );
 
 ##### _padding_value_
 
-Set this option to pad with a value other than `null`.
+The default padding value is `null`. Set this option to pad with a value other than `null`.
 
 ``` javascript
 var opts = {
@@ -123,7 +125,9 @@ var out = chunkify( data, 3, opts );
 
 ##### _delay_
 
-By default, an `array` is chunked beginning with the first `array` element. Set this option to pad the first chunk, where `0 < delay < n`.
+By default, an `array` is chunked beginning with the first `array` element. Default: `0`.
+
+Set this option to pad the first chunk, where `0 < delay < n`.
 
 ``` javascript
 var opts = {
@@ -143,7 +147,9 @@ var out = chunkify( data, 3, opts );
 
 ##### _overlap_
 
-By default, the array is segmented into adjacent chunks (no overlap and no underlap). To create overlapping chunks, set the overlap option such that `0 < overlap < n`,
+By default, the array is segmented into adjacent chunks (no overlap and no underlap). Default: `0`.
+
+To create overlapping chunks, set the overlap option such that `0 < overlap < n`,
 
 ``` javascript
 var opts = {
