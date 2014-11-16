@@ -33,6 +33,8 @@ var out = chunkify( data, 3 );
 // returns [ [1,2,3], [4,5,6], [7,8,9], [10,null,null] ]
 ```
 
+The function is configurable and has the following options...
+
 
 ##### padding
 
@@ -59,7 +61,7 @@ var out = chunkify( data, 3, opts );
 ```
 
 
-##### overlap
+##### overlap (0<k<n)
 
 By default, the array is segmented into adjacent chunks (no overlap). To specify a chunk overlap `k` where `k < n`,
 
@@ -89,7 +91,7 @@ var out = chunkify( data, 3, opts );
 By default, an `array` is chunked beginning with the first `array` element. You may want to
 
 
-##### underlap
+##### underlap (k<0)
 
 Note, by default, `k = 0`. To specify a chunk underlap (`k < 0 `),
 
