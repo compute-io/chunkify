@@ -34,7 +34,7 @@ var out = chunkify( data, 3 );
 ```
 
 
-#### padding
+##### padding
 
 By default, if the `array` length is not evenly divisible by `n`, the last chunk is padded with `null` values. To turn off padding,
 
@@ -59,7 +59,7 @@ var out = chunkify( data, 3, opts );
 ```
 
 
-#### overlap
+##### overlap
 
 By default, the array is segmented into adjacent chunks (no overlap). To specify a chunk overlap `k` where `k < n`,
 
@@ -89,7 +89,7 @@ var out = chunkify( data, 3, opts );
 By default, an `array` is chunked beginning with the first `array` element. You may want to
 
 
-#### underlap
+##### underlap
 
 Note, by default, `k = 0`. To specify a chunk underlap (`k < 0 `),
 
