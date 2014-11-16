@@ -25,12 +25,21 @@
   "keywords": [
     "compute.io",
     "compute",
-    "computation"
+    "computation",
+    "chunk",
+    "array",
+    "utilities",
+    "utils",
+    "mathematics",
+    "math"
   ],
   "bugs": {
     "url": "https://github.com/compute-io/chunkify/issues"
   },
-  "dependencies": {},
+  "dependencies": {
+    "validate.io-integer": "^1.0.1",
+    "validate.io-object": "^1.0.0"
+  },
   "devDependencies": {
     "chai": "1.x.x",
     "mocha": "1.x.x",

@@ -42,6 +42,7 @@ var out = chunkify( data, 3 );
 
 The function is configurable and has the following options...
 
+
 ##### _start_
 
 `Integer` specifying the index from which to begin chunking. Default: `0`.
@@ -167,8 +168,7 @@ var out = chunkify( data, 3, opts );
 		[6,7,8],
 		[7,8,9],
 		[8,9,10],
-		[9,10,null],
-		[10,null,null]
+		[9,10,null]
 	]
 */
 ```
@@ -188,12 +188,6 @@ var out = chunkify( data, 3, opts );
 	]
 */
 ```
-
-
-
-  
-
-
 
 
 ## Examples
