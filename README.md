@@ -30,15 +30,60 @@ Segments an `array` into chunks of length `n`.
 var data = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ];
 
 var out = chunkify( data, 3 );
-// returns [ [1,2,3], [4,5,6], [7,8,9], [10,null,null] ]
+/* returns
+	[
+		[1,2,3],
+		[4,5,6],
+		[7,8,9],
+		[10,null,null]
+	]
+*/
 ```
 
 The function is configurable and has the following options...
 
+##### _start_
 
-##### padding
+`Integer` specifying the index from which to begin chunking.
 
-By default, if the `array` length is not evenly divisible by `n`, the last chunk is padded with `null` values. To turn off padding,
+``` javascript
+var opts = {
+	'start': 2
+};
+
+var out = chunkify( data, 3, opts );
+/* returns
+	[
+		[2,3,4],
+		[5,6,7],
+		[8,9,10]
+	]
+*/
+```
+
+
+##### _truncate_
+
+`Boolean` specifying whether the last chunk must contain only `array` values and no padded values.
+
+``` javascript
+var opts = {
+	'truncate': true
+};
+
+var out = chunkify( data, 3, opts );
+/* returns
+	[
+		[1,2,3],
+		[4,5,6],
+		[7,8,9]
+	]
+*/
+```
+
+##### _padding_
+
+By default, if the `array` length is not evenly divisible by `n`, the last chunk is padded with `null` values. To turn off padding, set this option to `false`.
 
 ``` javascript
 var opts = {
@@ -46,10 +91,19 @@ var opts = {
 };
 
 var out = chunkify( data, 3, opts );
-// returns [ [1,2,3], [4,5,6], [7,8,9], [10] ]
+/* returns
+	[
+		[1,2,3],
+		[4,5,6],
+		[7,8,9],
+		[10]
+	]
+*/
 ```
 
-To pad with a value other than `null`,
+##### _padding_value_
+
+Set this option to pad with a value other than `null`.
 
 ``` javascript
 var opts = {
@@ -57,18 +111,43 @@ var opts = {
 };
 
 var out = chunkify( data, 3, opts );
-// returns [ [1,2,3], [4,5,6], [7,8,9], [10,0,0] ]
+/* returns
+	[
+		[1,2,3],
+		[4,5,6],
+		[7,8,9],
+		[10,0,0]
+	]
+*/
 ```
 
+##### _delay_
 
-##### overlap ( 0 < k < n )
-
-By default, the array is segmented into adjacent chunks (no overlap). To specify a chunk overlap `k` where `0 < k < n`,
+By default, an `array` is chunked beginning with the first `array` element. Set this option to pad the first chunk, where `0 < delay < n`.
 
 ``` javascript
 var opts = {
-	'overlap': 2,
-	'padding_value': 0
+	'delay': 2
+};
+
+var out = chunkify( data, 3, opts );
+/* returns 
+	[
+		[null,null,1],
+		[2,3,4],
+		[5,6,7],
+		[8,9,10]
+	]
+*/
+```
+
+##### _overlap_
+
+By default, the array is segmented into adjacent chunks (no overlap and no underlap). To create overlapping chunks, set the overlap option such that `0 < overlap < n`,
+
+``` javascript
+var opts = {
+	'overlap': 2
 };
 
 var out = chunkify( data, 3, opts );
@@ -82,61 +161,29 @@ var out = chunkify( data, 3, opts );
 		[6,7,8],
 		[7,8,9],
 		[8,9,10],
-		[9,10,0],
-		[10,0,0]
+		[9,10,null],
+		[10,null,null]
 	]
 */
 ```
 
-By default, an `array` is chunked beginning with the first `array` element. You may want to pad the first chunk when creating overlapping chunks. In which case, set the `delay` option to `true`.
+To create non-adjacent chunks (underlap), set the overlap such that `overlap < 0 `, where `|overlap|` corresponds to the number of elements to skip between new chunks.
 
 ``` javascript
 var opts = {
-	'overlap': 2,
-	'padding_value': 0,
-	'delay': true
-};
-
-var out = chunkify( data, 3, opts );
-/* returns 
-	[
-		[0,0,1],
-		[0,1,2],
-		[1,2,3],
-		[2,3,4],
-		[3,4,5],
-		[4,5,6],
-		[5,6,7],
-		[6,7,8],
-		[7,8,9],
-		[8,9,10],
-		[9,10,0],
-		[10,0,0]
-	]
-*/
-```
-
-When setting `delay` to `true`, the first chunk is padded with `k` values.
-
-
-##### underlap ( k < 0 )
-
-To specify a chunk underlap (`k < 0 `), i.e., a number of elements to skip before creating a new chunk,
-
-``` javascript
-var opts = {
-	'overlap': -5,
-	'padding_value': 0
+	'overlap': -4
 };
 
 var out = chunkify( data, 3, opts );
 /* returns 
 	[
 		[1,2,3],
-		[9,10,0]
+		[8,9,10]
 	]
 */
 ```
+
+
 
   
 
