@@ -88,12 +88,40 @@ var out = chunkify( data, 3, opts );
 */
 ```
 
-By default, an `array` is chunked beginning with the first `array` element. You may want to
+By default, an `array` is chunked beginning with the first `array` element. You may want to pad the first chunk when creating overlapping chunks. In which case, set the `delay` option to `true`.
+
+``` javascript
+var opts = {
+	'overlap': 2,
+	'padding_value': 0,
+	'delay': true
+};
+
+var out = chunkify( data, 3, opts );
+/* returns 
+	[
+		[0,0,1],
+		[0,1,2],
+		[1,2,3],
+		[2,3,4],
+		[3,4,5],
+		[4,5,6],
+		[5,6,7],
+		[6,7,8],
+		[7,8,9],
+		[8,9,10],
+		[9,10,0],
+		[10,0,0]
+	]
+*/
+```
+
+When setting `delay` to `true`, the first chunk is padded with `k` values.
 
 
 ##### underlap ( k < 0 )
 
-Note, by default, `k = 0`. To specify a chunk underlap (`k < 0 `),
+To specify a chunk underlap (`k < 0 `), i.e., a number of elements to skip before creating a new chunk,
 
 ``` javascript
 var opts = {
