@@ -1,4 +1,4 @@
-chunkify
+Chunkify
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
 
@@ -19,18 +19,104 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 To use the module,
 
 ``` javascript
-var foo = require( 'compute-chunkify' );
+var chunkify = require( 'compute-chunkify' );
 ```
 
-#### foo( arr )
+#### chunkify( arr, n[, opts] )
 
-What does this function do?
+Segments an `array` into chunks of length `n`.
+
+``` javascript
+var data = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ];
+
+var out = chunkify( data, 3 );
+// returns [ [1,2,3], [4,5,6], [7,8,9], [10,null,null] ]
+```
+
+
+#### padding
+
+By default, if the `array` length is not evenly divisible by `n`, the last chunk is padded with `null` values. To turn off padding,
+
+``` javascript
+var opts = {
+	'padding': false
+};
+
+var out = chunkify( data, 3, opts );
+// returns [ [1,2,3], [4,5,6], [7,8,9], [10] ]
+```
+
+To pad with a value other than `null`,
+
+``` javascript
+var opts = {
+	'padding_value': 0
+};
+
+var out = chunkify( data, 3, opts );
+// returns [ [1,2,3], [4,5,6], [7,8,9], [10,0,0] ]
+```
+
+
+#### overlap
+
+By default, the array is segmented into adjacent chunks (no overlap). To specify a chunk overlap `k` where `k < n`,
+
+``` javascript
+var opts = {
+	'overlap': 2,
+	'padding_value': 0
+};
+
+var out = chunkify( data, 3, opts );
+/* returns 
+	[
+		[1,2,3],
+		[2,3,4],
+		[3,4,5],
+		[4,5,6],
+		[5,6,7],
+		[6,7,8],
+		[7,8,9],
+		[8,9,10],
+		[9,10,0],
+		[10,0,0]
+	]
+*/
+```
+
+By default, an `array` is chunked beginning with the first `array` element. You may want to
+
+
+#### underlap
+
+Note, by default, `k = 0`. To specify a chunk underlap (`k < 0 `),
+
+``` javascript
+var opts = {
+	'overlap': -5,
+	'padding_value': 0
+};
+
+var out = chunkify( data, 3, opts );
+/* returns 
+	[
+		[1,2,3],
+		[9,10,0]
+	]
+*/
+```
+
+  
+
+
 
 
 ## Examples
 
 ``` javascript
-var foo = require( 'compute-chunkify' );
+var chunkify = require( 'compute-chunkify' );
 ```
 
 To run the example code from the top-level application directory,
